@@ -23,7 +23,7 @@ app.get('/', (req, res) => {
   res.send('success!');
 });
 
-app.post('/register', (req, res) => {
+app.post('/api/users/register', (req, res) => {
   const user = new User(req.body);
   user.save((err, doc) => {
     if(err) return res.json({ success: false, err })
@@ -33,7 +33,7 @@ app.post('/register', (req, res) => {
   })
 })
 
-// 로그인
+//로그인
 app.post('/api/users/login', (req, res) => {
   User.findOne({ email: req.body.email }, (err, user) => {
     if(!user){
@@ -56,13 +56,13 @@ app.post('/api/users/login', (req, res) => {
 })
 
 app.get('/api/users/auth', auth, (req, res) => {
-  console.log('hello');
   res.status(200).json({
     _id: req.user.id,
     isAdmin: req.user.role === 0 ? false : true,
     isAuth: true,
     email: req.user.email,
     name: req.user.name,
+    role: req.user.role
   })
 })
 
