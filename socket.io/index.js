@@ -2,12 +2,14 @@ const express = require('express');
 const app = express();
 const socket = require('socket.io');
 const http = require('http').createServer(app);
-const port = 3000;
-
+const port = 5000;
+const cors = require('cors')
 const io = socket(http);
 
+app.use(cors())
+
 app.get('/', (req, res) => {
-    res.sendFile(__dirname + '/index.html');
+    res.send('Success');
 })
 
 let onUsers = 0;
