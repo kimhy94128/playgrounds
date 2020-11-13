@@ -20,14 +20,19 @@ const io = socket(server, {
   }
 });
 
+let count = 0;
 io.on('connection', (socket) => {
-  console.log('사용자 접속');
+  count += 1
+  console.log('유저 입장');
+  console.log('현재 사용자', count, '명');
 
   socket.on('msg', (msg) => {
     io.emit('msg', msg)
   })
 
   socket.on('disconnect', () => {
-    console.log('사용자 접속 해제');
+    count -= 1
+    console.log('유저 퇴장');
+    console.log('현재 사용자', count, '명');
   })
 })
