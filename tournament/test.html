@@ -1,0 +1,106 @@
+<html>
+<head>
+	<title>http://www.blueb.co.kr</title>
+
+<script language="javascript" type="text/javascript">
+<!-- Begin
+function scoreWinner( personA, personB, next1, next2, next3, personAwin, personBwin ){
+	with ( personAwin.form ){
+		if ( ! personAwin.checked && ! personBwin.checked ){
+			next1.value = "";
+			next2.value = "";
+			next3.value = "";
+		}
+		else {
+			next1.value = ( personAwin.checked ? personA.value : " " );
+			personBwin.checked = false;
+			next2.value = "";
+			next3.value = "";
+		}
+	}
+}
+
+function advance( winner, loser, place ){
+	place.value = winner.value;
+}
+// End -->
+</script>
+</HEAD>
+<BODY>
+
+<form name=tournament>
+<table width=500 border=0 cellspacing=1 cellpadding=3 bgcolor=999999>
+<tr bgcolor=efefef>
+	<td align="center">선수이름</td>
+	<td colspan=2 align=center>준준결승</td>
+	<td colspan=2 align=center>준결승</td>
+	<td colspan=2 align=center>결승</td>
+</tr>
+
+<tr bgcolor=ffffff>
+	<td align=center>
+	<input type=text name=player1 size=10><input type=checkbox name=player1win onClick="scoreWinner(this.form.player1, this.form.player2, this.form.round1winner1, this.form.round2winner1, this.form.round3winner, this, this.form.player2win);">
+	</td>
+	<td rowspan=2 colspan=2 align=center>
+	<input type=button name=round1winner1 value=" " onClick="advance(this, this.form.round1winner2, this.form.round2winner1);">
+	</td>
+	<td rowspan=4 colspan=2 align=center>
+	<input type=button name=round2winner1 value=" " onClick="advance(this, this.form.round2winner2, this.form.round3winner);">
+	</td>
+	<td rowspan=8 colspan=2 align=center>
+	<input type=button name=round3winner value=" ">
+	</td>
+</tr>
+<tr bgcolor=ffffff>
+	<td align=center>
+	<input type=text name=player2 size=10><input type=checkbox name=player2win onClick="scoreWinner(this.form.player2, this.form.player1, this.form.round1winner1, this.form.round2winner1, this.form.round3winner, this, this.form.player1win);">
+	</td>
+</tr>
+<tr bgcolor=ffffff>
+	<td align=center>
+	<input type=text name=player3 size=10><input type=checkbox name=player3win onClick="scoreWinner(this.form.player3, this.form.player4, this.form.round1winner2, this.form.round2winner1, this.form.round3winner, this, this.form.player4win);">
+	</td>
+	<td rowspan=2 colspan=2 align=center>
+	<input type=button name=round1winner2 value=" " onClick="advance(this, this.form.round1winner1, this.form.round2winner1);">
+	</td>
+</tr>
+
+<tr bgcolor=ffffff>
+	<td align=center>
+	<input type=text name=player4 size=10><input type=checkbox name=player4win onClick="scoreWinner(this.form.player4, this.form.player3, this.form.round1winner2, this.form.round2winner1, this.form.round3winner, this, this.form.player3win);">
+	</td>
+</tr>
+<tr bgcolor=ffffff>
+	<td align=center>
+	<input type=text name=player5 size=10><input type=checkbox name=player5win onClick="scoreWinner(this.form.player5, this.form.player6, this.form.round1winner3, this.form.round2winner2, this.form.round3winner, this, this.form.player6win);">
+	</td>
+	<td rowspan=2 colspan=2 align=center>
+	<input type=button name=round1winner3 value=" " onClick="advance(this, this.form.round1winner4, this.form.round2winner2);">
+	</td>
+	<td rowspan=4 colspan=2 align=center>
+	<input type=button name=round2winner2 value=" " onClick="advance(this, this.form.round2winner1, this.form.round3winner);">
+	</td>
+</tr>
+<tr bgcolor=ffffff>
+	<td align=center>
+	<input type=text name=player6 size=10><input type=checkbox name=player6win onClick="scoreWinner(this.form.player6, this.form.player5, this.form.round1winner3, this.form.round2winner2, this.form.round3winner, this, this.form.player5win);">
+	</td>
+</tr>
+<tr bgcolor=ffffff>
+	<td align=center>
+	<input type=text name=player7 size=10><input type=checkbox name=player7win onClick="scoreWinner(this.form.player7, this.form.player8, this.form.round1winner4, this.form.round2winner2, this.form.round3winner, this, this.form.player8win);">
+	</td>
+	<td rowspan=2 colspan=2 align=center>
+	<input type=button name=round1winner4 value=" " onClick="advance(this, this.form.round1winner3, this.form.round2winner2);">
+	</td>
+</tr>
+<tr bgcolor=ffffff>
+	<td align=center>
+	<input type=text name=player8 size=10><input type=checkbox name=player8win onClick="scoreWinner(this.form.player8, this.form.player7, this.form.round1winner4, this.form.round2winner2, this.form.round3winner, this, this.form.player7win);">
+	</td>
+</tr>
+</table>
+</form>
+
+</BODY>
+</HTML>

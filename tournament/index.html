@@ -1,0 +1,119 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>토너먼트</title>
+  <style>
+    table {
+      width: 100%;
+      text-align: center;
+      border-spacing: 0;
+    }
+    table, th, td {
+      border: 1px solid black;
+    }
+    th, td {
+      padding: 5px;
+    }
+    .quater, .semi, .final {
+      width: 25%;
+    }
+    table > input {
+      width: 50%;
+      text-align: center;
+    }
+  </style>
+</head>
+<body>
+  배틀에 참여하는 사람의 이름을 입력하세요. 
+  <form action="" name="users">
+    1.<input type="text" name="user1"><br>
+    2.<input type="text" name="user2"><br>
+    3.<input type="text" name="user3"><br>
+    4.<input type="text" name="user4"><br>
+    5.<input type="text" name="user5"><br>
+    6.<input type="text" name="user6"><br>
+    7.<input type="text" name="user7"><br>
+    8.<input type="text" name="user8"><br>
+    <input type="button" value="확인" onclick="battleStart()">
+  </form>
+<script>
+const userInfo = document.querySelector('form[name=users]');
+
+function battleStart(){
+  document.body.innerHTML = `<table>
+  <tr>
+    <th width="10">no</th><th>8강</th><th>4강</th><th>결승</th><th>우승자</th>
+  </tr>
+  <tr>
+    <td>1</td><td class="quater"><input type="button" value=${userInfo.user1.value}></td><td rowspan='2' class="semi"><input type="button"></td><td rowspan='4' class="final"><input type="button"></td><td rowspan="8" class="winner"><input type="text" readonly></td>
+  </tr>
+  <tr>
+    <td>2</td><td class="quater"><input type="button" value=${userInfo.user2.value}></td>
+  </tr>
+  <tr>
+    <td>3</td><td class="quater"><input type="button" value=${userInfo.user3.value}></td><td rowspan='2' class="semi"><input type="button"></td>
+  </tr>
+  <tr>
+    <td>4</td><td class="quater"><input type="button" value=${userInfo.user4.value}></td>
+  </tr>
+  <tr>
+    <td>5</td><td class="quater"><input type="button" value=${userInfo.user5.value}></td><td rowspan='2' class="semi"><input type="button"></td><td rowspan='4' class="final"><input type="button"></td>
+  </tr>
+  <tr>
+    <td>6</td><td class="quater"><input type="button" value=${userInfo.user6.value}></td>
+  </tr>
+  <tr>
+    <td>7</td><td class="quater"><input type="button" value=${userInfo.user7.value}></td><td rowspan='2' class="semi"><input type="button"></td>
+  </tr>
+  <tr>
+    <td>8</td><td class="quater"><input type="button" value=${userInfo.user8.value}></td>
+  </tr>
+</table>`
+  const users = document.querySelectorAll('.quater > input');
+  const semi = document.querySelectorAll('.semi > input');
+  const final = document.querySelectorAll('.final > input');
+  const winner = document.querySelector('.winner > input')
+
+  users.forEach((user, i) => {
+    user.addEventListener('click', ()=>{
+      alert(`${user.value} 승`)
+      if(i == 0 || i == 1){
+      semi[0].value = user.value
+      } else if (i == 2 || i == 3){
+      semi[1].value = user.value
+      } else if (i == 4 || i == 5){
+      semi[2].value = user.value
+      } else if (i == 6 || i == 7){
+      semi[3].value = user.value
+      }
+    })
+  })
+  semi.forEach((user, i) => {
+    user.addEventListener('click', () => {
+      alert(`${user.value} 승`)
+      if(i == 0 || i == 1){
+        final[0].value = user.value
+      } else if (i == 2 || i == 3){
+        final[1].value = user.value
+      }
+    })
+  })
+  final.forEach(user => {
+    user.addEventListener('click', () => {
+    alert (`축하합니다!\n우승자는 ${user.value}입니다.`)
+    winner.value = user.value
+    })
+  })
+
+  console.log(users);
+  function quater1(){
+}
+
+}
+
+
+</script>
+</body>
+</html>
