@@ -7,9 +7,16 @@
 </head>
 <body>
   Hello world
+  <button onclick='sendMsg(event)'>클릭</button>
   <script src="/socket.io/socket.io.js"></script>
   <script>
-    var socket = io();
+    const socket = io();
+    function sendMsg(e){
+      socket.emit('msg', 'hi');
+    }
+    socket.on('msg', (msg) => {
+      console.log(msg);
+    })
   </script>
 </body>
 </html>

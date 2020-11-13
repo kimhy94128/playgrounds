@@ -13,8 +13,21 @@ app.get('/', (req, res) => {
 
 // socket 설정
 const socket = require('socket.io');
-const io = socket(server);
+const io = socket(server, {
+  cors: {
+    origin: "http://localhost:3000",
+    methods: ["GET", "POST"]
+  }
+});
 
 io.on('connection', (socket) => {
   console.log('사용자 접속');
+
+  socket.on('msg', (msg) => {
+    io.emit('msg', msg)
+  })
+
+  socket.on('disconnect', () => {
+    console.log('사용자 접속 해제');
+  })
 })
