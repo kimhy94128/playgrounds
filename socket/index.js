@@ -27,6 +27,7 @@ io.on('connection', (socket) => {
   console.log('현재 사용자', count, '명');
 
   socket.on('msg', (msg) => {
+    console.log(msg);
     io.emit('msg', msg)
   })
 
