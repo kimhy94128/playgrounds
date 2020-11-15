@@ -1,4 +1,5 @@
 .imessage {
+  height: 100%;
   background-color: #fff;
   display: flex;
   flex-direction: column;
@@ -7,6 +8,7 @@
   margin: 0 auto 1rem;
   padding: 0.5rem 1.5rem;
   overflow: scroll;
+  margin-bottom: 0;
 }
 .message-end {
   height: 78px;
@@ -190,7 +192,7 @@ h2 {
 /* 입력창 */
 .chat {
   background-color: #fff;
-  position: fixed;
+  position: absolute;
   margin: 0;
   left: 0;
   right: 0;
@@ -226,4 +228,73 @@ h2 {
   color:#248bf5;
   font-weight:700;
   text-align:right;
+}
+
+.message {
+  float: right;
+  width: 85%;
+  height: 100%;
+  position: relative;
+  overflow: hidden;
+}
+
+
+/* 채팅방 목록 */
+.chat-list {
+  height: 100%;
+  width: 15%;
+  min-width: 150px;
+  border-right: 1px solid silver;
+  box-sizing: border-box;
+}
+.chat-list li {
+  border-bottom: 1px solid silver;
+  box-sizing: border-box;
+  width: 100%;
+  height: 70px;
+  position: relative;
+}
+.chat-list .list-username {
+  position: absolute;
+  font-size: 15px;
+  font-weight: bold;
+  top: 10px;
+  left: 5%;
+}
+.chat-list .list-time {
+  position: absolute;
+  font-size: 14px;
+  top: 10px;
+  right: 5%;
+}
+.chat-list .list-message {
+  width: 90%;
+  position: absolute;
+  font-size: 15px;
+  bottom: 10px;
+  left: 5%;
+  white-space : nowrap;
+  text-overflow: ellipsis;
+  overflow: hidden;
+}
+
+
+/* 리셋 */
+html, body, #root {
+  width: 100%;
+  height: 100%;
+}
+body {
+  margin: 0;
+  padding: 0;
+}
+ul {
+  margin: 0;
+  padding: 0;
+}
+li {
+  list-style: none;
+}
+a {
+  color: #000
 }
