@@ -18,6 +18,12 @@ const io = socket(server, {
 });
 // socket setting
 
+// socket
 io.on('connection', (socket) => {
   console.log('유저 접속');
+
+  socket.on('from-me', (msg) => {
+      socket.emit('from-me', msg)
+  })
 })
+// socket
