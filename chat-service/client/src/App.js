@@ -14,7 +14,11 @@ function App() {
     scrollRef.current.scrollIntoView({ behavior: 'smooth', block: 'end', inline: 'nearest' });
   }, [messages])
   
-  socket.on('from-me', (msg) => {
+  socket.on('from-them', (msg) => {
+    msg = {
+      from: msg.from,
+      message: msg.message
+    }
     setMessages([...messages, msg])
   })
 
@@ -24,7 +28,14 @@ function App() {
   const onSubmit = (event) => {
     event.preventDefault()
     if(inputMessage.length > 0){
-      socket.emit('from-me', inputMessage)
+      socket.emit('from-me', {
+        from: 'from-me',
+        message: inputMessage
+      })
+      setMessages([...messages, {
+        from: 'from-me',
+        message: inputMessage
+      } ])
     }
     setInputMessage('')
   }
@@ -33,19 +44,9 @@ function App() {
   return (
     <>
       <div className="imessage" ref={scrollRef}>
-        <p className="from-them">It was loud. We just laid there and said &ldquo;is this an earthquake? I think this is an earthquake.&rdquo;</p>
-        <p className="from-me">Like is this an earthquake just go back to sleep</p>
-        <p className="from-them margin-b_one">It&rsquo;s more like &ldquo;this is an earthquake. Check the Internet. Yup. Earthquake. This is the size. This is the epicenter. Check social media. Make sure the East Coast knows I&rsquo;m alive. Okay, try and go back to sleep.&rdquo;</p>
-        <p className="from-me no-tail emoji">👍🏻</p>
-        <p className="from-me">Glad you&rsquo;re safe</p>
-        <p className="from-them">It was loud. We just laid there and said &ldquo;is this an earthquake? I think this is an earthquake.&rdquo;</p>
-        <p className="from-me">Like is this an earthquake just go back to sleep</p>
-        <p className="from-them margin-b_one">It&rsquo;s more like &ldquo;this is an earthquake. Check the Internet. Yup. Earthquake. This is the size. This is the epicenter. Check social media. Make sure the East Coast knows I&rsquo;m alive. Okay, try and go back to sleep.&rdquo;</p>
-        <p className="from-me no-tail emoji">👍🏻</p>
-        <p className="from-me">Glad you&rsquo;re safe</p>
-      {messages.map((list, i) => (
-        <p className="from-them" key={i}>{list}</p>
-      ))}
+        {messages.map((msg, i) => (
+          <p className={msg.from} key={i}>{msg.message}</p>
+        ))}
         <span className="message-end"></span>
       </div>
       <div className="chat">

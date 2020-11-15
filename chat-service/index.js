@@ -23,7 +23,14 @@ io.on('connection', (socket) => {
   console.log('유저 접속');
 
   socket.on('from-me', (msg) => {
-      socket.emit('from-me', msg)
+    socket.broadcast.emit('from-them', {
+      from: 'from-them',
+      message: msg.message
+    })
+  })
+
+  socket.on('disconnect', () => {
+    console.log('유저 접속 종료');
   })
 })
 // socket
